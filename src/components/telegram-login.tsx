@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Send } from "lucide-react";
 
 declare global {
   interface Window {
@@ -94,7 +95,13 @@ export function TelegramLogin({
   return (
     <div className="flex flex-col items-start gap-3">
       {botUsername ? (
-        <div className="min-h-10" ref={containerRef} />
+        <div className="telegram-login-button" title="Log in with Telegram">
+          <span className="telegram-login-face" aria-hidden>
+            <Send className="size-5 fill-current stroke-[2.5]" />
+            <span>{loading ? "Signing in..." : "Log in with Telegram"}</span>
+          </span>
+          <div className="telegram-login-widget" ref={containerRef} />
+        </div>
       ) : devAuthEnabled ? null : (
         <div className="rounded-md border border-dashed border-slate-300 px-4 py-3 text-sm text-slate-600">
           Set <span className="font-mono text-slate-900">NEXT_PUBLIC_TELEGRAM_BOT_USERNAME</span> to enable Telegram login.
