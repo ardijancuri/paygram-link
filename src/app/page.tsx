@@ -1,9 +1,12 @@
 import { ArrowRight, Link2, ShieldCheck, WalletCards } from "lucide-react";
 import Link from "next/link";
+import { connection } from "next/server";
 
 import { TelegramLogin } from "@/components/telegram-login";
 
-export default function Home() {
+export default async function Home() {
+  await connection();
+
   const botUsername = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME ?? process.env.TELEGRAM_BOT_USERNAME;
   const devAuthEnabled =
     process.env.NODE_ENV !== "production" &&
