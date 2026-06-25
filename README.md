@@ -1,0 +1,80 @@
+# PayGram Link
+
+PayGram Link is a non-custodial TON testnet payment-link app for Telegram sellers, creators, freelancers, and communities.
+
+The MVP supports:
+
+- Telegram seller login.
+- Seller TON testnet receiving wallet settings.
+- Shareable payment links.
+- Public TON Connect checkout pages.
+- Payment attempts with `paygram:<attemptId>` transfer comments.
+- Cron-based TON testnet payment detection.
+- Telegram bot notifications when payments are detected.
+
+## Stack
+
+- Next.js App Router with TypeScript and Tailwind CSS.
+- Plain PostgreSQL through `postgres`.
+- SQL migrations in `db/migrations`.
+- TON Connect UI and `@ton/core`.
+- Telegram Login Widget and Bot API.
+
+No Prisma is used.
+
+## Local Setup
+
+1. Copy `.env.example` to `.env.local` and fill the values.
+2. Create a PostgreSQL database.
+3. Run migrations:
+
+```bash
+npm run migrate
+```
+
+4. Start the app:
+
+```bash
+npm run dev
+```
+
+For local development, `ENABLE_DEV_LOGIN=true` enables the test seller sign-in button.
+
+## Telegram Setup
+
+Create a bot with BotFather, then set:
+
+```bash
+TELEGRAM_BOT_TOKEN="..."
+TELEGRAM_BOT_USERNAME="your_bot"
+NEXT_PUBLIC_TELEGRAM_BOT_USERNAME="your_bot"
+TELEGRAM_WEBHOOK_SECRET="..."
+```
+
+Point the bot webhook at:
+
+```text
+https://your-domain.com/api/telegram/webhook
+```
+
+Include `TELEGRAM_WEBHOOK_SECRET` as Telegram's webhook secret token.
+
+## Payment Detection
+
+The cron endpoint is:
+
+```text
+GET /api/cron/detect-payments
+Authorization: Bearer <CRON_SECRET>
+```
+
+It polls TON testnet transactions for active payment attempts, records transaction events idempotently, marks matching attempts as paid, and sends Telegram notifications.
+
+## Commands
+
+```bash
+npm run lint
+npm run test
+npm run build
+```
+
