@@ -40,6 +40,32 @@ npm run dev
 
 For local development, `ENABLE_DEV_LOGIN=true` enables the test seller sign-in button.
 
+## Hostinger + Supabase
+
+Hostinger's Supabase wizard asks for two app changes:
+
+1. Add `@supabase/supabase-js` to `dependencies`.
+2. Create `db.js` next to `package.json` with a Supabase client connection test.
+
+Those changes are present in this repo. The smoke test uses the real `users` table:
+
+```bash
+SUPABASE_URL="https://..."
+SUPABASE_API_KEY="..."
+```
+
+PayGram Link's production routes still use Supabase as a PostgreSQL database through the existing `postgres` SQL client. That means the app also needs a direct Postgres connection string.
+
+Also set this variable in Hostinger:
+
+```bash
+DATABASE_URL="postgresql://..."
+```
+
+Use the Supabase Postgres connection string from Project Settings > Database. On hosts without IPv6 support, use Supabase's connection pooler URL. Keep SSL enabled; the app requires SSL automatically for non-local database URLs.
+
+Before using the deployed app, apply `db/migrations/001_initial.sql` to the Supabase database, either through the Supabase SQL Editor or by running `npm run migrate` with `DATABASE_URL` pointed at Supabase.
+
 ## Telegram Setup
 
 Create a bot with BotFather, then set:
@@ -77,4 +103,3 @@ npm run lint
 npm run test
 npm run build
 ```
-
