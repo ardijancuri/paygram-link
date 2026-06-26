@@ -109,14 +109,21 @@ textarea {
 }
 
 .telegram-login-button {
-  position: relative;
   display: inline-flex;
   height: 40px;
   min-width: 220px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border-radius: 8px;
+  border: 0;
   background: #58aeea;
+  padding: 0 16px;
   color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
   box-shadow: none;
   transition:
     background 180ms ease,
@@ -128,33 +135,10 @@ textarea {
   transform: translateY(-1px);
 }
 
-.telegram-login-face {
-  pointer-events: none;
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 16px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.telegram-login-widget {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  overflow: hidden;
-  opacity: 0;
-}
-
-.telegram-login-widget iframe {
-  height: 100% !important;
-  width: 100% !important;
+.telegram-login-button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+  transform: none;
 }
 
 .btn-secondary {

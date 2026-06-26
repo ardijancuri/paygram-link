@@ -8,6 +8,7 @@ export default async function Home() {
   await connection();
 
   const botUsername = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME ?? process.env.TELEGRAM_BOT_USERNAME;
+  const botId = process.env.TELEGRAM_BOT_TOKEN?.split(":")[0];
   const devAuthEnabled =
     process.env.NODE_ENV !== "production" &&
     (process.env.NEXT_PUBLIC_ENABLE_DEV_LOGIN === "true" || process.env.ENABLE_DEV_LOGIN !== "false");
@@ -26,7 +27,7 @@ export default async function Home() {
             </p>
 
             <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-start">
-              <TelegramLogin botUsername={botUsername} devAuthEnabled={devAuthEnabled} />
+              <TelegramLogin botId={botId} botUsername={botUsername} devAuthEnabled={devAuthEnabled} />
               <Link
                 className="inline-flex h-11 items-center gap-2 text-sm font-black text-slate-700 transition hover:text-sky-700"
                 href="/dashboard/links"
