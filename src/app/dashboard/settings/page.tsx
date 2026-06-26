@@ -1,5 +1,6 @@
-import { Bell, CheckCircle2, WalletCards } from "lucide-react";
+import { Bell, WalletCards } from "lucide-react";
 
+import { TelegramNotificationStatus } from "@/components/telegram-notification-status";
 import { WalletSettingsForm } from "@/components/wallet-settings-form";
 import { getSellerWallet } from "@/lib/repositories";
 import { requireUser } from "@/lib/session";
@@ -51,23 +52,12 @@ export default async function SettingsPage() {
             </div>
           </div>
 
-          {user.telegramChatId ? (
-            <div className="mt-5 flex items-center gap-2 rounded-lg bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700">
-              <CheckCircle2 aria-hidden className="size-5" />
-              Notifications connected
-            </div>
-          ) : telegramLink ? (
-            <a className="btn-primary mt-5" href={telegramLink} rel="noreferrer" target="_blank">
-              Connect Telegram bot
-            </a>
-          ) : (
-            <p className="mt-5 rounded-lg border border-dashed border-slate-300 px-4 py-3 text-sm text-slate-600">
-              Set <span className="font-mono text-slate-950">TELEGRAM_BOT_USERNAME</span> to generate the bot link.
-            </p>
-          )}
+          <TelegramNotificationStatus
+            initialConnected={Boolean(user.telegramChatId)}
+            telegramLink={telegramLink}
+          />
         </section>
       </div>
     </div>
   );
 }
-
