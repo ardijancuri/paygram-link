@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -96,7 +97,14 @@ export function PaymentLinkForm({ walletReady }: { walletReady: boolean }) {
         {loading ? "Creating..." : "Create link"}
       </button>
 
-      {!walletReady ? <p className="text-sm text-amber-700">Add a receiving wallet before creating links.</p> : null}
+      {!walletReady ? (
+        <p className="text-sm text-amber-700">
+          Add a receiving wallet before creating links.{" "}
+          <Link className="font-extrabold text-sky-700 transition hover:text-sky-800" href="/dashboard/settings">
+            Add it in settings
+          </Link>
+        </p>
+      ) : null}
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
     </form>
   );
