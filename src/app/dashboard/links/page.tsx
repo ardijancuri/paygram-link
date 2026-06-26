@@ -27,7 +27,7 @@ export default async function LinksPage() {
         </div>
       </div>
 
-      <section className="grid gap-6 lg:grid-cols-[420px_1fr]">
+      <section className="grid gap-6">
         <div className="paygram-panel-strong rounded-lg p-5">
           <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
             <span className="grid size-10 place-items-center rounded-lg bg-sky-50 text-sky-700">
@@ -80,4 +80,3 @@ export default async function LinksPage() {
     </div>
   );
 }
-

@@ -21,7 +21,7 @@ export default async function SettingsPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6">
         <section className="paygram-panel-strong rounded-lg p-5">
           <div className="flex items-start gap-3 border-b border-slate-100 pb-4">
             <span className="grid size-10 place-items-center rounded-lg bg-sky-50 text-sky-700">
